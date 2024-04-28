@@ -16,6 +16,7 @@ import 'package:PhotoAid/controllers/create_profile_controller.dart';
 import 'package:PhotoAid/controllers/home_controller.dart';
 import 'package:PhotoAid/view/terms_of_service/terms_of_service.dart';
 import 'package:PhotoAid/view/home/home_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateProfileScreen extends StatelessWidget {
   CreateProfileScreen({super.key});
@@ -24,6 +25,34 @@ class CreateProfileScreen extends StatelessWidget {
       Get.put(CreateProfileController());
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController enterCode = TextEditingController();
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+   void saveProfileData() async {
+   try {
+      // Collect data from TextControllers or any other inputs
+      var fullName = phoneController.text.trim(); // Assuming phoneController is for full name as in your form
+      var email = enterCode.text.trim();
+      var gender = createProfileController.male.value
+          ? "male"
+          : createProfileController.female.value
+            ? "female"
+            : "other";
+
+      // Create a map of data to be saved
+      Map<String, dynamic> profileData = {
+        'fullName': fullName,
+        'email': email,
+        'gender': gender,
+      };
+
+      // Save data to Firestore
+      await firestore.collection('profiles').add(profileData);
+      Get.to(() => HomeScreen()); // Navigate after saving data
+    } catch (e) {
+      print("Error saving data: $e");
+      // Optionally handle errors or show an error message
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,9 +251,7 @@ class CreateProfileScreen extends StatelessWidget {
                                 right: AppSize.size20,
                                 bottom: AppSize.size20),
                             child: ButtonCommon(
-                              onTap: () {
-                                Get.to(() => HomeScreen());
-                              },
+                              onTap: saveProfileData,
                               text: AppStrings.proceed,
                               height: AppSize.size54,
                               buttonColor: Color.fromARGB(255, 9, 81, 27),

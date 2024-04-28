@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "93384810755",
+    "project_id": "photoaid-169ce",
+    "storage_bucket": "photoaid-169ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93384810755:android:4a5f43f366393897ccc936",
+        "android_client_info": {
+          "package_name": "com.photoaid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwbdXWHM2L-E4XvF2bWYTnQtX_ljgCrrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

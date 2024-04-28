@@ -539,7 +539,7 @@ class HomeScreen extends StatelessWidget {
                                       padding: EdgeInsets.only(
                                           left: languageController.arb.value
                                               ? 0
-                                              : AppSize.size15,
+                                              : AppSize.size100,
                                           right: languageController.arb.value
                                               ? AppSize.size15
                                               : 0),

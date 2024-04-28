@@ -179,10 +179,10 @@ class HomeController extends GetxController {
     Timer(const Duration(seconds: 2), () async {
 
       var libraryPlaceResult = await MapServices()
-          .nearByPlaceDetailsAPI(const LatLng(21.2315, 72.8663),
+          .nearByPlaceDetailsAPI(const LatLng(-27.7241, 153.1137),
           16093.4.toInt(), "library");
       var parkPlaceResult = await MapServices()
-          .nearByPlaceDetailsAPI(const LatLng(21.2315, 72.8663),
+          .nearByPlaceDetailsAPI(const LatLng(-27.7241, 153.1137),
           16093.4.toInt(), "park");
 
       List<dynamic> placeWithinList =
@@ -218,24 +218,24 @@ class HomeController extends GetxController {
 
   void onTapDirection() {
     myMapController?.animateCamera(CameraUpdate.newCameraPosition(const CameraPosition(
-      target: LatLng(21.2315, 72.8663),
+      target: LatLng(-27.7241, 153.1137),
       zoom: 17.0,
     )));
     update();
   }
 
   List<String> serviceIcon = [
-    AppIcons.daily,
-    AppIcons.electric,
-    AppIcons.rentals,
-    AppIcons.outStations,
+    //AppIcons.daily,
+    AppIcons.photographer,
+   // AppIcons.rentals,
+    //AppIcons.outStations,
   ];
 
   List<String> serviceString = [
-    AppStrings.daily,
-    AppStrings.electric,
-    AppStrings.rentals,
-    AppStrings.outstation,
+   // AppStrings.daily,
+    AppStrings.photographer,
+   // AppStrings.rentals,
+   // AppStrings.outstation,
   ];
 
   List<String> locationString = [

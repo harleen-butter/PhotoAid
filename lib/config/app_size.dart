@@ -251,8 +251,8 @@ class AppSize {
   static const int seventy = 70;
   static const int time60 = 16;
   static const int time200 = 200;
-  static const double latitude = 21.2315;
-  static const double longitude = 72.8663;
+  static const double latitude = -27.7241;
+  static const double longitude = 153.1137;
   static const double longitude72 = 72.8688;
   static const double minus1 = -1;
 

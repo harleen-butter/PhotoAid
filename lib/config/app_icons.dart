@@ -17,7 +17,7 @@ class AppIcons {
   static const String like = "assets/icons/like.png";
   static const String likeFill = "assets/icons/like_fill.png";
   static const String daily = "assets/icons/daily.png";
-  static const String electric = "assets/icons/electric.png";
+  static const String photographer = "assets/icons/photographer.png";
   static const String rentals = "assets/icons/rentals.png";
   static const String outStations = "assets/icons/out_station.png";
   static const String search = "assets/icons/search_icon.png";

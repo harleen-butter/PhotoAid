@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:PhotoAid/config/app_strings.dart';
@@ -5,8 +6,21 @@ import 'package:PhotoAid/controllers/storage_controller.dart';
 import 'package:PhotoAid/localization/app_translation.dart';
 import 'package:PhotoAid/view/splash/splash_screen.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+       apiKey: 'AIzaSyDwbdXWHM2L-E4XvF2bWYTnQtX_ljgCrrA',
+       appId: '1:93384810755:android:4a5f43f366393897ccc936',
+       messagingSenderId: '93384810755',
+       projectId: 'photoaid-169ce',
+       storageBucket: 'photoaid-169ce.appspot.com',
+      )
+    );
+  } catch (e) {
+    print("Firebase initialization error: $e");
+  }
   String? languageCode = await StorageController.instance.getLanguage();
   String? countryCode = await StorageController.instance.getCountryCode();
   runApp(MyApp(

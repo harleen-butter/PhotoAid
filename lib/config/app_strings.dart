@@ -18,7 +18,7 @@ class AppStrings {
   static const String payment = "Payments";
   static const String safety = "Safety";
   static const String settings = "Settings";  
-  static const String key = 'AIzaSyAgrMwwCZlfp8Updk7wpl0oBihrvG4QfNc';
+  static const String key = 'AIzaSyDwbdXWHM2L-E4XvF2bWYTnQtX_ljgCrrA';
   static const String logOut = "Logout";
   static const String saveLocations = "Save locations";
   static const String lorem =
@@ -57,7 +57,7 @@ class AppStrings {
   static const String thisNumber =
       "This number will be used for all communication. You shall receive an SMS with code for verification.";
   static const String daily = "Daily";
-  static const String electric = "Electric";
+  static const String photographer = "Photographer";
   static const String rentals = "Rentals";
   static const String outstation = "Outstation";
   static const String searchDestination = "Search destination";
