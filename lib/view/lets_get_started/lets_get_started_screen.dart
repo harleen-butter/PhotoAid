@@ -34,7 +34,7 @@ class GetStartedScreen extends StatelessWidget {
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Center(
         child: Container(
-          color: AppColors.backGroundColor,
+          color: AppColors.lightTheme,
           width: kIsWeb ? AppSize.size800 : null,
           child: Scaffold(
             appBar: PreferredSize(
@@ -236,7 +236,7 @@ class GetStartedScreen extends StatelessWidget {
     double width,
   ) {
     return Container(
-      color: AppColors.backGroundColor,
+      color: AppColors.lightTheme,
       height: height / 3.7,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,

@@ -598,7 +598,7 @@ class MyRidesActiveDetailsScreen extends StatelessWidget {
                               padding: EdgeInsets.only(
                                   right: AppSize.size6, left: AppSize.size6),
                               child: Text(
-                                AppStrings.driverDetails,
+                                AppStrings.photographerDetails,
                                 style: TextStyle(
                                   fontSize: AppSize.size14,
                                   fontFamily: FontFamily.latoMedium,

@@ -66,7 +66,7 @@ class DriverDetailsScreen extends StatelessWidget {
               padding:
                   EdgeInsets.only(left: AppSize.size12, right: AppSize.size12),
               child: Text(
-                AppStrings.driverDetails,
+                AppStrings.photographerDetails,
                 style: TextStyle(
                   fontSize: AppSize.size20,
                   fontFamily: FontFamily.latoBold,
@@ -109,61 +109,12 @@ class DriverDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Fluttertoast.showToast(
-                msg: AppStrings.numberCopied,
-                backgroundColor: AppColors.lightTheme,
-                textColor: AppColors.blackTextColor,
-                fontSize: AppSize.size14,
-                gravity: ToastGravity.BOTTOM,
-                toastLength: Toast.LENGTH_SHORT,
-              );
-            },
-            child: Container(
-              height: AppSize.size34,
-              width: AppSize.size171,
-              margin: const EdgeInsets.only(top: AppSize.size16),
-              decoration: BoxDecoration(
-                color: AppColors.lightTheme,
-                borderRadius: BorderRadius.circular(AppSize.size3),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Obx(
-                    () => Padding(
-                      padding: EdgeInsets.only(
-                          right:
-                              languageController.arb.value ? 0 : AppSize.size12,
-                          left: languageController.arb.value
-                              ? AppSize.size12
-                              : AppSize.size0),
-                      child: const Text(
-                        AppStrings.driverNumber,
-                        style: TextStyle(
-                          fontFamily: FontFamily.latoBold,
-                          fontWeight: FontWeight.w700,
-                          fontSize: AppSize.size14,
-                          color: AppColors.blackTextColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Image.asset(
-                    AppIcons.copyIcon,
-                    width: AppSize.size14,
-                  ),
-                ],
-              ),
-            ),
-          ),
           Container(
             height: AppSize.size115,
             margin: const EdgeInsets.only(top: AppSize.size24),
             padding: const EdgeInsets.only(
-              left: AppSize.size24,
-              right: AppSize.size24,
+              left: AppSize.size50,
+              right: AppSize.size50,
             ),
             decoration: BoxDecoration(
               color: AppColors.backGroundColor,
@@ -183,9 +134,17 @@ class DriverDetailsScreen extends StatelessWidget {
             ),
             child: IntrinsicHeight(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
+               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // _customDetails(AppIcons.ratingIcon, AppStrings.like1and6,
+                  //     AppStrings.rating),
+                  // VerticalDivider(
+                  //   color:
+                  //       AppColors.smallTextColor.withOpacity(AppSize.opacity20),
+                  //   indent: AppSize.size28,
+                  //   endIndent: AppSize.size28,
+                  // ),
                   _customDetails(AppIcons.ratingIcon, AppStrings.like1and6,
                       AppStrings.rating),
                   VerticalDivider(
@@ -194,16 +153,8 @@ class DriverDetailsScreen extends StatelessWidget {
                     indent: AppSize.size28,
                     endIndent: AppSize.size28,
                   ),
-                  _customDetails(AppIcons.tripIcon, AppStrings.number578,
-                      AppStrings.trips),
-                  VerticalDivider(
-                    color:
-                        AppColors.smallTextColor.withOpacity(AppSize.opacity20),
-                    indent: AppSize.size28,
-                    endIndent: AppSize.size28,
-                  ),
-                  _customDetails(
-                      AppIcons.yearIcon, AppStrings.number8, AppStrings.years),
+                  // _customDetails(
+                  //     AppIcons.yearIcon, AppStrings.number8, AppStrings.years),
                 ],
               ),
             ),

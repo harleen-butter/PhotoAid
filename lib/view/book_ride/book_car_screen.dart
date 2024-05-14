@@ -70,7 +70,7 @@ class BookCarScreen extends StatelessWidget {
                                       color: AppColors.blackTextColor,
                                     ),
                                     child: Text(
-                                      AppStrings.searchingDriver,
+                                      AppStrings.searchingPhotographer,
                                     ),
                                   ),
                                   GestureDetector(
@@ -100,7 +100,7 @@ class BookCarScreen extends StatelessWidget {
                                     color: AppColors.smallTextColor,
                                   ),
                                   child: Text(
-                                    AppStrings.searchDriverString,
+                                    AppStrings.searchPhotographerString,
                                   ),
                                 ),
                               ),
@@ -166,7 +166,7 @@ class BookCarScreen extends StatelessWidget {
                                         color: AppColors.blackTextColor,
                                       ),
                                       child: Text(
-                                        AppStrings.driverIsArriving,
+                                        AppStrings.photographerIsArriving,
                                       ),
                                     ),
                                     DefaultTextStyle(
@@ -275,12 +275,12 @@ class BookCarScreen extends StatelessWidget {
                                         Get.to(() => DriverDetailsScreen());
                                       },
                                       child: const Text(
-                                        AppStrings.driverDetails,
+                                        AppStrings.photographerDetails,
                                         style: TextStyle(
                                           fontSize: AppSize.size12,
                                           fontWeight: FontWeight.w400,
                                           fontFamily: FontFamily.latoRegular,
-                                          color: AppColors.primaryColor,
+                                          color: Color.fromARGB(255, 9, 81, 27),
                                         ),
                                       ),
                                     ),
@@ -295,42 +295,6 @@ class BookCarScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: AppSize.size15,
-                                ),
-                                child: Row(
-                                  children: [
-                                    _customBookCarButton(
-                                      BoxDecoration(
-                                        border: Border.all(
-                                          color: AppColors.blackTextColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(AppSize.size10),
-                                      ),
-                                      AppStrings.cancel,
-                                      AppColors.blackTextColor,
-                                      () {
-                                        Get.to(() => CancelCarScreen());
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: AppSize.size16,
-                                    ),
-                                    _customBookCarButton(
-                                      BoxDecoration(
-                                        color: AppColors.blackTextColor,
-                                        borderRadius: BorderRadius.circular(AppSize.size10),
-                                      ),
-                                      AppStrings.accept,
-                                      AppColors.backGroundColor,
-                                          () {
-                                        Get.to(() => TripToDestinationScreen());
-                                      },
-                                    ),
-                                  ],
-                                ),
                               ),
                             ],
                           ),
@@ -456,7 +420,7 @@ class BookCarScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              AppStrings.fareHasBeenUpdated,
+              AppStrings.confirmRequest,
               style: TextStyle(
                 fontSize: AppSize.size20,
                 fontWeight: FontWeight.w700,
@@ -470,7 +434,7 @@ class BookCarScreen extends StatelessWidget {
                 bottom: AppSize.size30,
               ),
               child: Text(
-                AppStrings.fareUpdateString,
+                AppStrings.confirmContinue,
                 style: TextStyle(
                   fontSize: AppSize.size14,
                   fontWeight: FontWeight.w500,
@@ -499,10 +463,10 @@ class BookCarScreen extends StatelessWidget {
                 ),
                 _customBookCarButton(
                   BoxDecoration(
-                    color: AppColors.blackTextColor,
+                    color: Color.fromARGB(255, 9, 81, 27),
                     borderRadius: BorderRadius.circular(AppSize.size10),
                   ),
-                  AppStrings.book,
+                  AppStrings.confirm,
                   AppColors.backGroundColor,
                   () {
                     bookCarController.toggleBooking();

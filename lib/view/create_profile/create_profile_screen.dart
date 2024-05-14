@@ -1,3 +1,4 @@
+import 'package:PhotoAid/view/destination/select_route_with_map.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +48,7 @@ class CreateProfileScreen extends StatelessWidget {
 
       // Save data to Firestore
       await firestore.collection('profiles').add(profileData);
-      Get.to(() => HomeScreen()); // Navigate after saving data
+      Get.to(() => SelectRouteWithMapScreen()); // Navigate after saving data
     } catch (e) {
       print("Error saving data: $e");
       // Optionally handle errors or show an error message

@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:PhotoAid/view/book_ride/book_car_screen.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -29,11 +30,11 @@ class SelectRouteWithMapScreen extends StatelessWidget {
           AppStrings.yourLocation,
           Padding(
             padding: const EdgeInsets.only(
-              top: AppSize.size7,
+              top: AppSize.size6,
             ),
             child: Container(
-              width: AppSize.size14,
-              height: AppSize.size14,
+              width: AppSize.size6,
+              height: AppSize.size6,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: AppColors.greenColor,
@@ -54,94 +55,94 @@ class SelectRouteWithMapScreen extends StatelessWidget {
             ),
           ),
           selectRouteWithMapController.locationController),
-      _buildListTile(
-          AppStrings.addStop,
-          Padding(
-            padding: const EdgeInsets.only(
-              top: AppSize.size6,
-            ),
-            child: Obx(() {
-              if (selectRouteWithMapController.isTimerElapsed.value) {
-                return GestureDetector(
-                  onTap: () {
-                    discardRouteBottomSheet(context);
-                  },
-                  child: Image.asset(
-                    AppIcons.closeIcon,
-                    width: AppSize.size14,
-                    height: AppSize.size14,
-                  ),
-                );
-              } else {
-                return Container(
-                  width: AppSize.size14,
-                  height: AppSize.size14,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.yellow,
-                      width: AppSize.size1,
-                    ),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: Container(
-                      width: AppSize.size8,
-                      height: AppSize.size8,
-                      decoration: const BoxDecoration(
-                        color: Colors.yellow,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                );
-              }
-            }),
-          ),
-          selectRouteWithMapController.addStopController),
-      _buildListTile(
-          AppStrings.enterDestination,
-          Padding(
-            padding: const EdgeInsets.only(
-              top: AppSize.size6,
-            ),
-            child: Obx(() {
-              if (selectRouteWithMapController.isTimerElapsed.value) {
-                return GestureDetector(
-                  onTap: () {
-                    discardRouteBottomSheet(context);
-                  },
-                  child: Image.asset(
-                    AppIcons.closeIcon,
-                    width: AppSize.size14,
-                    height: AppSize.size14,
-                  ),
-                );
-              } else {
-                return Container(
-                  width: AppSize.size14,
-                  height: AppSize.size14,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.yellow,
-                      width: AppSize.size1,
-                    ),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: Container(
-                      width: AppSize.size8,
-                      height: AppSize.size8,
-                      decoration: const BoxDecoration(
-                        color: Colors.yellow,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                );
-              }
-            }),
-          ),
-          selectRouteWithMapController.destinationController),
+      // _buildListTile(
+      //     AppStrings.addStop,
+      //     Padding(
+      //       padding: const EdgeInsets.only(
+      //         top: AppSize.size6,
+      //       ),
+      //       child: Obx(() {
+      //         if (selectRouteWithMapController.isTimerElapsed.value) {
+      //           return GestureDetector(
+      //             onTap: () {
+      //               discardRouteBottomSheet(context);
+      //             },
+      //             child: Image.asset(
+      //               AppIcons.closeIcon,
+      //               width: AppSize.size14,
+      //               height: AppSize.size14,
+      //             ),
+      //           );
+      //         } else {
+      //           return Container(
+      //             width: AppSize.size14,
+      //             height: AppSize.size14,
+      //             decoration: BoxDecoration(
+      //               border: Border.all(
+      //                 color: Colors.yellow,
+      //                 width: AppSize.size1,
+      //               ),
+      //               shape: BoxShape.circle,
+      //             ),
+      //             child: Center(
+      //               child: Container(
+      //                 width: AppSize.size8,
+      //                 height: AppSize.size8,
+      //                 decoration: const BoxDecoration(
+      //                   color: Colors.yellow,
+      //                   shape: BoxShape.circle,
+      //                 ),
+      //               ),
+      //             ),
+      //           );
+      //         }
+      //       }),
+      //     ),
+      //    selectRouteWithMapController.addStopController),
+      // _buildListTile(
+      //     AppStrings.enterDestination,
+      //     Padding(
+      //       padding: const EdgeInsets.only(
+      //         top: AppSize.size6,
+      //       ),
+      //       child: Obx(() {
+      //         if (selectRouteWithMapController.isTimerElapsed.value) {
+      //           return GestureDetector(
+      //             onTap: () {
+      //               discardRouteBottomSheet(context);
+      //             },
+      //             child: Image.asset(
+      //               AppIcons.closeIcon,
+      //               width: AppSize.size14,
+      //               height: AppSize.size14,
+      //             ),
+      //           );
+      //         } else {
+      //           return Container(
+      //             width: AppSize.size14,
+      //             height: AppSize.size14,
+      //             decoration: BoxDecoration(
+      //               border: Border.all(
+      //                 color: Colors.yellow,
+      //                 width: AppSize.size1,
+      //               ),
+      //               shape: BoxShape.circle,
+      //             ),
+      //             child: Center(
+      //               child: Container(
+      //                 width: AppSize.size8,
+      //                 height: AppSize.size8,
+      //                 decoration: const BoxDecoration(
+      //                   color: Colors.yellow,
+      //                   shape: BoxShape.circle,
+      //                 ),
+      //               ),
+      //             ),
+      //           );
+      //         }
+      //       }),
+      //     ),
+      //     selectRouteWithMapController.destinationController),
     ]);
   }
 
@@ -279,58 +280,9 @@ class SelectRouteWithMapScreen extends StatelessWidget {
                         dashGapRadius: AppSize.size0,
                       ),
                     ),
-                    selectRouteWithMapController.routeListTiles[1],
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: AppSize.size30,
-                      ),
-                      child: DottedLine(
-                        direction: Axis.horizontal,
-                        alignment: WrapAlignment.center,
-                        lineLength:
-                        kIsWeb ? AppSize.size680 : AppSize.size255,
-                        lineThickness: AppSize.size1,
-                        dashLength: AppSize.size4,
-                        dashColor: AppColors.smallTextColor
-                            .withOpacity(AppSize.opacity20),
-                        dashRadius: AppSize.size0,
-                        dashGapLength: AppSize.size4,
-                        dashGapColor: Colors.transparent,
-                        dashGapRadius: AppSize.size0,
-                      ),
-                    ),
-                    selectRouteWithMapController.routeListTiles[2],
                   ],
                 )),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: languageController.arb.value ? 0 : AppSize.size23,
-                  right: languageController.arb.value
-                      ? AppSize.size23
-                      : AppSize.size0,
-                  top: AppSize.size45,
-                ),
-                child: Container(
-                  width: AppSize.size1,
-                  height: AppSize.size46,
-                  color: AppColors.smallTextColor,
-                ),
-              ),
-              Padding(
-                padding:  EdgeInsets.only(
-                  left: languageController.arb.value ? 0 : AppSize.size23,
-                  right: languageController.arb.value
-                      ? AppSize.size23
-                      : AppSize.size0,
-                  top: AppSize.size110,
-                ),
-                child: Container(
-                  width: AppSize.size1,
-                  height: AppSize.size46,
-                  color: AppColors.smallTextColor,
-                ),
-              ),
+              ),            
               Positioned(
                 bottom: AppSize.size55,
                 right:languageController.arb.value?null: AppSize.size16,left:languageController.arb.value? AppSize.size16:null ,
@@ -386,7 +338,7 @@ class SelectRouteWithMapScreen extends StatelessWidget {
           GestureDetector(
             onTap: () {
               selectRouteWithMapController.addPolylineToDestination();
-              Get.to(() => BookRideScreen());
+              Get.to(() => BookCarScreen());
             },
             child: Container(
               height: AppSize.size54,
@@ -396,12 +348,12 @@ class SelectRouteWithMapScreen extends StatelessWidget {
                 right: AppSize.size20,
               ),
               decoration: BoxDecoration(
-                color: AppColors.blackTextColor,
+                color: Color.fromARGB(255, 9, 81, 27),
                 borderRadius: BorderRadius.circular(AppSize.size10),
               ),
               child: const Center(
                 child: Text(
-                  AppStrings.bookRide,
+                  AppStrings.createRequest,
                   style: TextStyle(
                     fontSize: AppSize.size16,
                     fontWeight: FontWeight.w600,

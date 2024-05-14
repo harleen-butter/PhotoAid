@@ -6,16 +6,16 @@ import 'package:PhotoAid/config/app_strings.dart';
 class BookCarController extends GetxController {
   RxBool isBookingOpen = false.obs;
   RxBool isDriverSearch = false.obs;
-  RxString appBarTitle = AppStrings.bookCarText.obs;
+  RxString appBarTitle = AppStrings.requestPhotographer.obs;
   Timer? _timer;
 
   void toggleBooking() {
     isBookingOpen.value = !isBookingOpen.value;
 
     if (!isDriverSearch.value && !isBookingOpen.value) {
-      appBarTitle.value = AppStrings.bookCarText;
+      appBarTitle.value = AppStrings.requestPhotographer;
     } else if (isBookingOpen.value) {
-      appBarTitle.value =AppStrings.searchingDriverText;
+      appBarTitle.value =AppStrings.requestPhotographer;
     }
   }
 
@@ -23,9 +23,9 @@ class BookCarController extends GetxController {
     isDriverSearch.value = !isDriverSearch.value;
 
     if (!isDriverSearch.value && !isBookingOpen.value) {
-      appBarTitle.value = AppStrings.bookCarText;
+      appBarTitle.value = AppStrings.requestPhotographer;
     } else if (isDriverSearch.value) {
-      appBarTitle.value = AppStrings.searchingDriverText;
+      appBarTitle.value = AppStrings.requestPhotographer;
     }
   }
 

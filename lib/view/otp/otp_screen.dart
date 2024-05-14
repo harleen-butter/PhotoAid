@@ -177,7 +177,7 @@ class OtpScreen extends StatelessWidget {
     double width,
   ) {
     return Container(
-      color: AppColors.backGroundColor,
+      color: AppColors.lightTheme,
       height: height / AppSize.size3_2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
