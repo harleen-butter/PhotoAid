@@ -5,18 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:PhotoAid/config/app_images.dart';
-import 'package:PhotoAid/controllers/book_car_controller.dart';
+import 'package:PhotoAid/controllers/book_photographer_controller.dart';
 import 'package:PhotoAid/controllers/select_route_with_map_controller.dart';
-import 'package:PhotoAid/view/book_ride/cancel_car_screen.dart';
-import 'package:PhotoAid/view/book_ride/driver_details_screen.dart';
-import 'package:PhotoAid/view/book_ride/trip_to_destination_screen.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_icons.dart';
 import '../../config/app_size.dart';
 import '../../config/app_strings.dart';
 import '../../config/font_family.dart';
-import '../widget/discard_route_bottom_sheet.dart';
 
 class BookCarScreen extends StatelessWidget {
   BookCarScreen({Key? key}) : super(key: key);
@@ -77,9 +73,7 @@ class BookCarScreen extends StatelessWidget {
                                     onTap: () {
                                       if (!bookCarController.isBookingOpen.value) {
                                         Get.back();
-                                      } else {
-                                        discardRouteBottomSheet(context);
-                                      }
+                                      } 
                                     },
                                     child: Image.asset(
                                       AppIcons.closeIcon2,
@@ -263,39 +257,6 @@ class BookCarScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      right: AppSize.size6,
-                                    ),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Get.to(() => DriverDetailsScreen());
-                                      },
-                                      child: const Text(
-                                        AppStrings.photographerDetails,
-                                        style: TextStyle(
-                                          fontSize: AppSize.size12,
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: FontFamily.latoRegular,
-                                          color: Color.fromARGB(255, 9, 81, 27),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.to(() => DriverDetailsScreen());
-                                    },
-                                    child: Image.asset(
-                                      AppIcons.rightArrowIcon2,
-                                      width: AppSize.size14,
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ],
                           ),
                         ),
@@ -369,7 +330,7 @@ class BookCarScreen extends StatelessWidget {
                 myLocationButtonEnabled: false,
                 zoomControlsEnabled: false,
                 initialCameraPosition: const CameraPosition(
-                  target: LatLng(AppSize.latitude, AppSize.longitude),
+                  target: LatLng(-27.9628, 153.3814),
                   zoom: AppSize.size14,
                 ),
                 mapType: MapType.normal,
@@ -455,7 +416,7 @@ class BookCarScreen extends StatelessWidget {
                   AppStrings.cancel,
                   AppColors.blackTextColor,
                   () {
-                    Get.to(() => CancelCarScreen());
+                    Get.back();
                   },
                 ),
                 const SizedBox(

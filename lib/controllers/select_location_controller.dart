@@ -20,12 +20,12 @@ class SelectLocationController extends GetxController {
   RxBool like = false.obs;
   BitmapDescriptor? customMarker;
   final MarkerId markerId = const MarkerId(AppStrings.currentLocation);
-  LatLng?selectedDestination;
+  LatLng? selectedDestination;
   GoogleMapController? myMapController;
   RxDouble latitude = 0.0.obs;
   RxDouble longitude = 0.0.obs;
-  Rx<LatLng> initialLocation = const LatLng(0, 0).obs;
-  Rx<LatLng> userLocation = const LatLng(0, 0).obs;
+  Rx<LatLng> initialLocation = const LatLng(-27.9628, 153.3814).obs;
+  Rx<LatLng> userLocation = const LatLng(-27.9628, 153.3814).obs;
   RxInt selectedServiceIndex = 0.obs;
   RxInt selectedIndex = 0.obs;
   TextEditingController selectLocationController = TextEditingController();
@@ -58,12 +58,10 @@ class SelectLocationController extends GetxController {
       Marker(
         markerId: markerId,
         position: initialLocation.value,
-
         icon: customMarker ?? BitmapDescriptor.defaultMarker,
         infoWindow: const InfoWindow(title: AppStrings.yourCustomMarker),
         anchor: const Offset(0.8, 0.8),
       ),
-
     };
   }
 
@@ -79,8 +77,10 @@ class SelectLocationController extends GetxController {
       'currentLocation',
       '',
       '',
-      BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.currentLocation, height: AppSize.size80.toInt(), width: AppSize.size80.toInt())),
+      BitmapDescriptor.fromBytes(await getBytesFromAsset(
+          path: AppIcons.currentLocation,
+          height: AppSize.size80.toInt(),
+          width: AppSize.size80.toInt())),
     );
     await _getCurrentAddress(latitude.value, longitude.value);
     initialLocation.value = LatLng(latitude.value, longitude.value);
@@ -108,40 +108,44 @@ class SelectLocationController extends GetxController {
 
     return '';
   }
-  Future<Uint8List> getBytesFromAsset(
 
+  Future<Uint8List> getBytesFromAsset(
       {required String path, int? width, int? height}) async {
     ByteData data = await rootBundle.load(path);
     ui.Codec codec = await ui.instantiateImageCodec(
       data.buffer.asUint8List(),
       targetWidth: width ?? AppSize.size55.toInt(),
-      targetHeight: height ??  AppSize.size55.toInt(),
+      targetHeight: height ?? AppSize.size55.toInt(),
     );
     ui.FrameInfo fi = await codec.getNextFrame();
     return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
         .buffer
         .asUint8List();
   }
+
   setNearMarker(LatLng cord, String name, List types, String status,
       String address) async {
     final BitmapDescriptor markerIcon;
 
-    if (types.contains('library')) {
-      markerIcon = BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.bikeIcon));
-    } else if (types.contains('park')) {
-      markerIcon = BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.autoIcon));
-    } else if (types.contains('school')) {
-      markerIcon = BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.carIcon));
-    } else {
-      markerIcon = BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.mapIcon));
-    }
+    // if (types.contains('library')) {
+    //   markerIcon = BitmapDescriptor.fromBytes(
+    //       await getBytesFromAsset(path: AppIcons.bikeIcon));
+    // } else if (types.contains('park')) {
+    //   markerIcon = BitmapDescriptor.fromBytes(
+    //       await getBytesFromAsset(path: AppIcons.autoIcon));
+    // } else if (types.contains('school')) {
+    //   markerIcon = BitmapDescriptor.fromBytes(
+    //       await getBytesFromAsset(path: AppIcons.carIcon));
+    // } else {
+    //   markerIcon = BitmapDescriptor.fromBytes(
+    //       await getBytesFromAsset(path: AppIcons.mapIcon));
+    // }
+    markerIcon = BitmapDescriptor.fromBytes(
+        await getBytesFromAsset(path: AppIcons.mapIcon));
     addCustomMarker(cord, name, name, address, markerIcon);
     update();
   }
+
   void addCustomMarker(LatLng latLng, String markerId, String placeName,
       String address, BitmapDescriptor icon) {
     markers.add(
@@ -177,19 +181,15 @@ class SelectLocationController extends GetxController {
   }
 
   void onMarkerTap(LatLng latLng) {}
-  gMapsFunctionCall (context) {
+  gMapsFunctionCall(context) {
     Timer(const Duration(seconds: 2), () async {
+      // var libraryPlaceResult = await MapServices()
+      //     .nearByPlaceDetailsAPI(const LatLng(-27.7241, 153.1137),
+      //     16093.4.toInt(), "library");
+      var parkPlaceResult = await MapServices().nearByPlaceDetailsAPI(
+          const LatLng(-27.9628, 153.3814), 1009.4.toInt(), "park");
 
-      var libraryPlaceResult = await MapServices()
-          .nearByPlaceDetailsAPI(const LatLng(21.2315, 72.8663),
-          16093.4.toInt(), "library");
-      var parkPlaceResult = await MapServices()
-          .nearByPlaceDetailsAPI(const LatLng(21.2315, 72.8663),
-          16093.4.toInt(), "park");
-
-      List<dynamic> placeWithinList =
-      (libraryPlaceResult['results'] +
-          parkPlaceResult['results']) as List;
+      List<dynamic> placeWithinList = (parkPlaceResult['results']) as List;
       // allMarkerList.clear();
       // allMarkerList.addAll(placeWithinList);
 
@@ -202,7 +202,6 @@ class SelectLocationController extends GetxController {
             element['business_status'] ?? 'not available',
             element['vicinity']);
       }
-
     });
   }
 

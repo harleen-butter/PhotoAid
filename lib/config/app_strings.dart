@@ -154,7 +154,7 @@ class AppStrings {
   static const String searchPhotographerString = "we are searching for the best suited photographer.";
   static const String photographerIsArriving = "Photgrapher is arriving...";
   static const String mins2 = "2 mins";
-  static const String deirdreRaja = "Deirdre smith";
+  static const String deirdreRaja = "Test";
   static const String carMercedes = " ";
   static const String like1and6 = "1.6k";
   static const String carNumber = " ";

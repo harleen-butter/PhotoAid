@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:PhotoAid/view/book_ride/book_car_screen.dart';
+import 'package:PhotoAid/view/request_photographer/request_photographer_screen.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +13,8 @@ import 'package:PhotoAid/config/app_strings.dart';
 import 'package:PhotoAid/config/font_family.dart';
 import 'package:PhotoAid/controllers/language_controller.dart';
 import 'package:PhotoAid/controllers/select_route_with_map_controller.dart';
-import 'package:PhotoAid/view/book_ride/book_ride_screen.dart';
+import 'package:PhotoAid/view/request_photographer/book_photographer_screen.dart';
 
-import '../widget/discard_route_bottom_sheet.dart';
 
 class SelectRouteWithMapScreen extends StatelessWidget {
   SelectRouteWithMapScreen({Key? key}) : super(key: key);
@@ -220,7 +219,7 @@ class SelectRouteWithMapScreen extends StatelessWidget {
                 myLocationButtonEnabled: false,
                 zoomControlsEnabled: false,
                 initialCameraPosition: const CameraPosition(
-                  target: LatLng(AppSize.latitude, AppSize.longitude),
+                  target: LatLng(-27.9628, 153.3814),
                   zoom: AppSize.size14,
                 ),
                 mapType: MapType.normal,

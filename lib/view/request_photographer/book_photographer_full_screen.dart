@@ -3,13 +3,9 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:PhotoAid/controllers/driver_details_controller.dart';
+import 'package:PhotoAid/controllers/request_photographer_controller.dart';
 import 'package:PhotoAid/controllers/language_controller.dart';
-import 'package:PhotoAid/view/book_ride/call_with_driver_screen.dart';
-import 'package:PhotoAid/view/book_ride/chat_with_driver_screen.dart';
-import 'package:PhotoAid/view/book_ride/trip_to_destination_screen.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_icons.dart';
@@ -17,11 +13,11 @@ import '../../config/app_size.dart';
 import '../../config/app_strings.dart';
 import '../../config/font_family.dart';
 
-class DriverDetailsScreen extends StatelessWidget {
-  DriverDetailsScreen({Key? key}) : super(key: key);
+class BookRideFullScreen extends StatelessWidget {
+  BookRideFullScreen({Key? key}) : super(key: key);
+
+  BookRideController bookRideController = Get.put(BookRideController());
   final LanguageController languageController = Get.put(LanguageController());
-  DriverDetailsController driverDetailsController =
-      Get.put(DriverDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +28,19 @@ class DriverDetailsScreen extends StatelessWidget {
         width: kIsWeb ? AppSize.size800 : null,
         child: Scaffold(
           backgroundColor: AppColors.backGroundColor,
+          resizeToAvoidBottomInset: false,
           appBar: _appBar(),
-          body: _driverDetailsContent(),
-          bottomNavigationBar: _bottomBarButton(context),
+          body: _body(context),
+          bottomNavigationBar: _bottomBarButton(),
         ),
       ),
     );
   }
 
-  //Driver Details Content
+  //Book Ride Full Screen Content
   _appBar() {
     return AppBar(
-      scrolledUnderElevation: 0,
+      scrolledUnderElevation: 0.0,
       backgroundColor: AppColors.backGroundColor,
       elevation: AppSize.size0,
       automaticallyImplyLeading: false,
@@ -66,7 +63,7 @@ class DriverDetailsScreen extends StatelessWidget {
               padding:
                   EdgeInsets.only(left: AppSize.size12, right: AppSize.size12),
               child: Text(
-                AppStrings.photographerDetails,
+                AppStrings.distance,
                 style: TextStyle(
                   fontSize: AppSize.size20,
                   fontFamily: FontFamily.latoBold,
@@ -81,122 +78,19 @@ class DriverDetailsScreen extends StatelessWidget {
     );
   }
 
-  _driverDetailsContent() {
+  _body(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.only(
-        top: AppSize.size34,
+        top: AppSize.size10,
         left: AppSize.size20,
         right: AppSize.size20,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: Image.asset(
-              AppIcons.driverIcon,
-              width: AppSize.size84,
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: AppSize.size12),
-            child: Text(
-              AppStrings.deirdreRaja,
-              style: TextStyle(
-                fontFamily: FontFamily.latoBold,
-                fontWeight: FontWeight.w700,
-                fontSize: AppSize.size20,
-                color: AppColors.blackTextColor,
-              ),
-            ),
-          ),
-          Container(
-            height: AppSize.size115,
-            margin: const EdgeInsets.only(top: AppSize.size24),
-            padding: const EdgeInsets.only(
-              left: AppSize.size50,
-              right: AppSize.size50,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.backGroundColor,
-              borderRadius: BorderRadius.circular(AppSize.size10),
-              border: Border.all(
-                color: AppColors.smallTextColor.withOpacity(AppSize.opacity15),
-                width: AppSize.size1and5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  spreadRadius: AppSize.size1,
-                  color:
-                      AppColors.blackTextColor.withOpacity(AppSize.opacity10),
-                  blurRadius: AppSize.size20,
-                ),
-              ],
-            ),
-            child: IntrinsicHeight(
-              child: Row(
-               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // _customDetails(AppIcons.ratingIcon, AppStrings.like1and6,
-                  //     AppStrings.rating),
-                  // VerticalDivider(
-                  //   color:
-                  //       AppColors.smallTextColor.withOpacity(AppSize.opacity20),
-                  //   indent: AppSize.size28,
-                  //   endIndent: AppSize.size28,
-                  // ),
-                  _customDetails(AppIcons.ratingIcon, AppStrings.like1and6,
-                      AppStrings.rating),
-                  VerticalDivider(
-                    color:
-                        AppColors.smallTextColor.withOpacity(AppSize.opacity20),
-                    indent: AppSize.size28,
-                    endIndent: AppSize.size28,
-                  ),
-                  // _customDetails(
-                  //     AppIcons.yearIcon, AppStrings.number8, AppStrings.years),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: AppSize.size137,
-            margin: const EdgeInsets.only(top: AppSize.size16),
-            padding: const EdgeInsets.only(
-              left: AppSize.size16,
-              right: AppSize.size16,
-              top: AppSize.size16,
-              bottom: AppSize.size16,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.backGroundColor,
-              borderRadius: BorderRadius.circular(AppSize.size10),
-              border: Border.all(
-                color: AppColors.smallTextColor.withOpacity(AppSize.opacity15),
-                width: AppSize.size1and5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  spreadRadius: AppSize.size1,
-                  color:
-                      AppColors.blackTextColor.withOpacity(AppSize.opacity10),
-                  blurRadius: AppSize.size20,
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _customCarDetails(AppStrings.memberSince, AppStrings.july15),
-                _customCarDetails(AppStrings.carModel, AppStrings.mercedesBenz),
-                _customCarDetails(AppStrings.plateNumber, AppStrings.carNumber),
-              ],
-            ),
-          ),
           Padding(
               padding: const EdgeInsets.only(
-                top: AppSize.size24,
-                bottom: AppSize.size24,
+                top: AppSize.size10,
               ),
               child: Obx(
                 () => Stack(
@@ -281,19 +175,19 @@ class DriverDetailsScreen extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               cursorColor: AppColors.smallTextColor,
-                              controller:
-                                  driverDetailsController.locationController,
+                              controller: bookRideController.locationController,
                             ),
                           ),
                           Obx(
                             () => Padding(
                               padding: EdgeInsets.only(
-                                  left: languageController.arb.value
-                                      ? AppSize.size0
-                                      : AppSize.size30,
-                                  right: languageController.arb.value
-                                      ? AppSize.size30
-                                      : AppSize.size0),
+                                left: languageController.arb.value
+                                    ? 0
+                                    : AppSize.size30,
+                                right: languageController.arb.value
+                                    ? AppSize.size30
+                                    : AppSize.size0,
+                              ),
                               child: DottedLine(
                                 direction: Axis.horizontal,
                                 alignment: WrapAlignment.center,
@@ -366,8 +260,7 @@ class DriverDetailsScreen extends StatelessWidget {
                                 color: AppColors.blackTextColor,
                               ),
                               cursorColor: AppColors.smallTextColor,
-                              controller:
-                                  driverDetailsController.addStopController,
+                              controller: bookRideController.addStopController,
                             ),
                             trailing: GestureDetector(
                               onTap: () {},
@@ -380,12 +273,13 @@ class DriverDetailsScreen extends StatelessWidget {
                           Obx(
                             () => Padding(
                               padding: EdgeInsets.only(
-                                  left: languageController.arb.value
-                                      ? AppSize.size0
-                                      : AppSize.size30,
-                                  right: languageController.arb.value
-                                      ? AppSize.size30
-                                      : AppSize.size0),
+                                left: languageController.arb.value
+                                    ? 0
+                                    : AppSize.size30,
+                                right: languageController.arb.value
+                                    ? AppSize.size30
+                                    : AppSize.size0,
+                              ),
                               child: DottedLine(
                                 direction: Axis.horizontal,
                                 alignment: WrapAlignment.center,
@@ -459,7 +353,7 @@ class DriverDetailsScreen extends StatelessWidget {
                               ),
                               cursorColor: AppColors.smallTextColor,
                               controller:
-                                  driverDetailsController.destinationController,
+                                  bookRideController.destinationController,
                             ),
                             trailing: GestureDetector(
                               onTap: () {},
@@ -475,8 +369,9 @@ class DriverDetailsScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(
                         left: languageController.arb.value ? 0 : AppSize.size23,
-                        right:
-                            languageController.arb.value ? AppSize.size23 : 0,
+                        right: languageController.arb.value
+                            ? AppSize.size23
+                            : AppSize.size0,
                         top: AppSize.size45,
                       ),
                       child: Container(
@@ -488,8 +383,9 @@ class DriverDetailsScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(
                         left: languageController.arb.value ? 0 : AppSize.size23,
-                        right:
-                            languageController.arb.value ? AppSize.size23 : 0,
+                        right: languageController.arb.value
+                            ? AppSize.size23
+                            : AppSize.size0,
                         top: AppSize.size110,
                       ),
                       child: Container(
@@ -501,80 +397,292 @@ class DriverDetailsScreen extends StatelessWidget {
                   ],
                 ),
               )),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: AppSize.size24,
+            ),
+            child: GestureDetector(
+              child: Container(
+                height: AppSize.size54,
+                padding: const EdgeInsets.only(
+                  left: AppSize.size16,
+                  right: AppSize.size16,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.backGroundColor,
+                  border: Border.all(
+                    color:
+                        AppColors.smallTextColor.withOpacity(AppSize.opacity15),
+                    width: AppSize.size1and5,
+                  ),
+                  borderRadius: BorderRadius.circular(AppSize.size10),
+                  boxShadow: [
+                    BoxShadow(
+                      spreadRadius: AppSize.size1,
+                      color: AppColors.blackTextColor
+                          .withOpacity(AppSize.opacity10),
+                      blurRadius: AppSize.size20,
+                    ),
+                  ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Obx(
+                          () => Padding(
+                            padding: EdgeInsets.only(
+                                right: languageController.arb.value
+                                    ? 0
+                                    : AppSize.size10,
+                                left: languageController.arb.value
+                                    ? AppSize.size10
+                                    : AppSize.size0),
+                            child: Image.asset(
+                              AppIcons.alarmIcon,
+                              width: AppSize.size18,
+                            ),
+                          ),
+                        ),
+                        const Text(
+                          AppStrings.selectTime,
+                          style: TextStyle(
+                            fontSize: AppSize.size14,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: FontFamily.latoSemiBold,
+                            color: AppColors.blackTextColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Image.asset(
+                      AppIcons.rightArrowIcon,
+                      width: AppSize.size16,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(
+              top: AppSize.size20,
+              bottom: AppSize.size16,
+            ),
+            child: Text(
+              AppStrings.recommendedRides,
+              style: TextStyle(
+                fontFamily: FontFamily.latoBold,
+                fontWeight: FontWeight.w700,
+                fontSize: AppSize.size16,
+                color: AppColors.blackTextColor,
+              ),
+            ),
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: bookRideController.rides.length,
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(
+                  bottom: AppSize.size16,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.backGroundColor,
+                    border: Border.all(
+                      color: AppColors.smallTextColor
+                          .withOpacity(AppSize.opacity15),
+                      width: AppSize.size1and5,
+                    ),
+                    borderRadius: BorderRadius.circular(AppSize.size10),
+                    boxShadow: [
+                      BoxShadow(
+                        spreadRadius: AppSize.opacity10,
+                        color: AppColors.blackTextColor
+                            .withOpacity(AppSize.opacity10),
+                        blurRadius: AppSize.size10,
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    horizontalTitleGap: AppSize.size7,
+                    dense: true,
+                    leading: Image.asset(
+                      bookRideController.ridesImage[index],
+                      width: AppSize.size32,
+                    ),
+                    title: Text(
+                      bookRideController.rides[index],
+                      style: const TextStyle(
+                        fontSize: AppSize.size14,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: FontFamily.latoBold,
+                        color: AppColors.blackTextColor,
+                      ),
+                    ),
+                    subtitle: Text(
+                      bookRideController.ridesSubtitle[index],
+                      style: const TextStyle(
+                        fontSize: AppSize.size12,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: FontFamily.latoRegular,
+                        color: AppColors.smallTextColor,
+                      ),
+                    ),
+                    trailing: index == 3
+                        ? Image.asset(
+                            AppIcons.rightArrowIcon,
+                            width: AppSize.size16,
+                          )
+                        : SizedBox(
+                            width: AppSize.size72,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                if (index == 0) ...[
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      right: AppSize.size6,
+                                    ),
+                                    child: GestureDetector(
+                                      child: Image.asset(
+                                        AppIcons.infoIcon,
+                                        width: AppSize.size14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                                Text(
+                                  bookRideController.ridesPrice[index],
+                                  style: const TextStyle(
+                                    fontFamily: FontFamily.latoMedium,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: AppSize.size14,
+                                    color: AppColors.blackTextColor,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    bookRideController
+                                        .selectFullScreenContainer(index);
+                                  },
+                                  child: Obx(() => Container(
+                                        width: AppSize.size16,
+                                        height: AppSize.size16,
+                                        margin: EdgeInsets.only(
+                                            left: languageController.arb.value
+                                                ? 0
+                                                : AppSize.size8,
+                                            right: languageController.arb.value
+                                                ? AppSize.size8
+                                                : AppSize.size0),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: AppColors.primaryColor,
+                                          ),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: bookRideController
+                                                    .selectedFullScreenRideContainerIndex
+                                                    .value ==
+                                                index
+                                            ? Center(
+                                                child: Container(
+                                                  width: AppSize.size8,
+                                                  height: AppSize.size8,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    color:
+                                                        AppColors.primaryColor,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                ),
+                                              )
+                                            : null,
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ),
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 
-  _bottomBarButton(BuildContext context) {
+  _bottomBarButton() {
     return Container(
-      height: AppSize.size156,
+      height: AppSize.size120,
       color: AppColors.backGroundColor,
       padding: const EdgeInsets.only(
         top: AppSize.size16,
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                AppIcons.closeIcon3,
-                width: AppSize.size46,
-              ),
-              const SizedBox(
-                width: AppSize.size16,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => ChatWithDriverScreen());
-                },
-                child: Image.asset(
-                  AppIcons.messageIcon,
-                  width: AppSize.size46,
+          IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: AppSize.size8,left: AppSize.size8
+                  ),
+                  child: Image.asset(
+                    AppIcons.cashIcon,
+                    width: AppSize.size16,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                width: AppSize.size16,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => CallWithDriverScreen());
-                },
-                child: Image.asset(
-                  AppIcons.callingIcon,
-                  width: AppSize.size46,
-                ),
-              ),
-              const SizedBox(
-                width: AppSize.size16,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Fluttertoast.showToast(
-                    msg: AppStrings.detailsShared,
-                    backgroundColor: AppColors.lightTheme,
-                    textColor: AppColors.blackTextColor,
+                const Text(
+                  AppStrings.cash,
+                  style: TextStyle(
                     fontSize: AppSize.size14,
-                    gravity: ToastGravity.BOTTOM,
-                    toastLength: Toast.LENGTH_SHORT,
-                  );
-                },
-                child: Image.asset(
-                  AppIcons.shareIcon,
-                  width: AppSize.size46,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: FontFamily.latoSemiBold,
+                    color: AppColors.blackTextColor,
+                  ),
                 ),
-              ),
-            ],
+                VerticalDivider(
+                  color:
+                      AppColors.smallTextColor.withOpacity(AppSize.opacity20),
+                  width: AppSize.size60,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: AppSize.size8,left: AppSize.size8
+                  ),
+                  child: Image.asset(
+                    AppIcons.couponIcon,
+                    width: AppSize.size16,
+                  ),
+                ),
+                GestureDetector(
+                  child: const Text(
+                    AppStrings.coupon,
+                    style: TextStyle(
+                      fontSize: AppSize.size14,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: FontFamily.latoSemiBold,
+                      color: AppColors.blackTextColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           GestureDetector(
-            onTap: () {
-              Get.to(() => TripToDestinationScreen());
-            },
             child: Container(
               height: AppSize.size54,
               margin: const EdgeInsets.only(
-                top: AppSize.size16,
+                top: AppSize.size12,
                 left: AppSize.size20,
                 right: AppSize.size20,
               ),
@@ -584,7 +692,7 @@ class DriverDetailsScreen extends StatelessWidget {
               ),
               child: const Center(
                 child: Text(
-                  AppStrings.continueButton,
+                  AppStrings.bookRide,
                   style: TextStyle(
                     fontSize: AppSize.size16,
                     fontWeight: FontWeight.w600,
@@ -597,68 +705,6 @@ class DriverDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  _customDetails(String image, String text1, String text2) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          image,
-          width: AppSize.size38,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: AppSize.size8),
-          child: Text(
-            text1,
-            style: const TextStyle(
-              fontSize: AppSize.size16,
-              fontWeight: FontWeight.w700,
-              fontFamily: FontFamily.latoBold,
-              color: AppColors.blackTextColor,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: AppSize.size4),
-          child: Text(
-            text2,
-            style: const TextStyle(
-              fontSize: AppSize.size12,
-              fontWeight: FontWeight.w400,
-              fontFamily: FontFamily.latoRegular,
-              color: AppColors.smallTextColor,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  _customCarDetails(String text1, String text2) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          text1,
-          style: const TextStyle(
-            fontSize: AppSize.size14,
-            fontWeight: FontWeight.w400,
-            fontFamily: FontFamily.latoRegular,
-            color: AppColors.smallTextColor,
-          ),
-        ),
-        Text(
-          text2,
-          style: const TextStyle(
-            fontSize: AppSize.size16,
-            fontWeight: FontWeight.w700,
-            fontFamily: FontFamily.latoBold,
-            color: AppColors.blackTextColor,
-          ),
-        ),
-      ],
     );
   }
 }

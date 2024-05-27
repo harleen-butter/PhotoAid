@@ -192,9 +192,9 @@ class MyRidesController extends GetxController {
   gMapsFunctionCall(context) {
     Timer(const Duration(seconds: 2), () async {
       var libraryPlaceResult = await MapServices().nearByPlaceDetailsAPI(
-          const LatLng(21.2315, 72.8663), 16093.4.toInt(), "library");
+          const LatLng(-27.9628, 153.3814), 1009.4.toInt(), "library");
       var parkPlaceResult = await MapServices().nearByPlaceDetailsAPI(
-          const LatLng(21.2315, 72.8663), 16093.4.toInt(), "park");
+          const LatLng(-27.9628, 153.3814), 1009.4.toInt(), "park");
 
       List<dynamic> placeWithinList =
       (libraryPlaceResult['results'] + parkPlaceResult['results']) as List;

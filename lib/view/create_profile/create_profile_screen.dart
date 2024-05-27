@@ -15,8 +15,7 @@ import 'package:PhotoAid/config/app_strings.dart';
 import 'package:PhotoAid/config/font_family.dart';
 import 'package:PhotoAid/controllers/create_profile_controller.dart';
 import 'package:PhotoAid/controllers/home_controller.dart';
-import 'package:PhotoAid/view/terms_of_service/terms_of_service.dart';
-import 'package:PhotoAid/view/home/home_screen.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateProfileScreen extends StatelessWidget {

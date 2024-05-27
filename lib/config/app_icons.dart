@@ -55,7 +55,7 @@ class AppIcons {
   static const String closeIcon2 = "assets/icons/close_icon2.png";
   static const String driverIcon = "assets/icons/driver_icon.png";
   static const String starIcon = "assets/icons/star_icon.png";
-  static const String rightArrowIcon2 = "assets/icons/right_arrow_icon2.png";
+  static const String rightArrowIcon2 = "assets/icons/right_arrow_icon.png";
   static const String checkboxIcon = "assets/icons/checkbox_icon.png";
   static const String checkboxFillIcon = "assets/icons/checkbox_fill_icon.png";
   static const String sadEmojiIcon = "assets/icons/sad_emoji_icon.png";

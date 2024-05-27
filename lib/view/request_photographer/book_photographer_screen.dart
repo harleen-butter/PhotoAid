@@ -6,13 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:PhotoAid/controllers/book_ride_controller.dart';
+import 'package:PhotoAid/controllers/request_photographer_controller.dart';
 import 'package:PhotoAid/controllers/language_controller.dart';
 import 'package:PhotoAid/controllers/select_route_with_map_controller.dart';
-import 'package:PhotoAid/view/book_ride/book_ride_full_screen.dart';
-import 'package:PhotoAid/view/widget/auto_details_bottom_sheet.dart';
-import 'package:PhotoAid/view/widget/schedule_a_ride_bottom_sheet.dart';
-import 'package:PhotoAid/view/widget/select_payment_bottom_sheet.dart';
+import 'package:PhotoAid/view/request_photographer/book_photographer_full_screen.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_icons.dart';
@@ -671,9 +668,6 @@ class BookRideScreen extends StatelessWidget {
                                         top: AppSize.size24,
                                       ),
                                       child: GestureDetector(
-                                        onTap: () {
-                                          scheduleARideBottomSheet(context);
-                                        },
                                         child: Container(
                                           height: AppSize.size54,
                                           padding: const EdgeInsets.only(
@@ -856,10 +850,6 @@ class BookRideScreen extends StatelessWidget {
                                                               ),
                                                               child:
                                                                   GestureDetector(
-                                                                onTap: () {
-                                                                  autoDetailsBottomSheet(
-                                                                      context);
-                                                                },
                                                                 child:
                                                                     Image.asset(
                                                                   AppIcons
@@ -962,9 +952,6 @@ class BookRideScreen extends StatelessWidget {
                                         right: AppSize.size8,left: AppSize.size8
                                       ),
                                       child: GestureDetector(
-                                        onTap: () {
-                                          selectPaymentBottomSheet(context);
-                                        },
                                         child: Image.asset(
                                           AppIcons.walletIcon,
                                           width: AppSize.size16,
@@ -972,9 +959,6 @@ class BookRideScreen extends StatelessWidget {
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: () {
-                                        selectPaymentBottomSheet(context);
-                                      },
                                       child: const Text(
                                         AppStrings.selectPayment,
                                         style: TextStyle(

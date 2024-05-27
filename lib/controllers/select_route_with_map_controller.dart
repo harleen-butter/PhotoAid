@@ -16,7 +16,6 @@ import 'package:PhotoAid/config/app_strings.dart';
 import 'package:http/http.dart' as http;
 import 'package:PhotoAid/controllers/home_controller.dart';
 
-
 HomeController homeController = Get.put(HomeController());
 
 class SelectRouteWithMapController extends GetxController {
@@ -25,19 +24,21 @@ class SelectRouteWithMapController extends GetxController {
   RxBool like = false.obs;
   BitmapDescriptor? customMarker;
   final MarkerId markerId = const MarkerId(AppStrings.currentLocation);
-  LatLng? selectedDestination=const LatLng(21.2212, 72.8688);
+  LatLng? selectedDestination = const LatLng(-27.9628, 153.3814);
   GoogleMapController? myMapController;
   RxBool isSwapped = false.obs;
   RxList<Widget> routeListTiles = <Widget>[].obs;
   RxDouble latitude = 0.0.obs;
   RxDouble longitude = 0.0.obs;
-  Rx<LatLng> initialLocation = const LatLng(0, 0).obs;
+  Rx<LatLng> initialLocation = const LatLng(-27.9628, 153.3814).obs;
   Rx<LatLng> userLocation = const LatLng(0, 0).obs;
   RxInt selectedServiceIndex = 0.obs;
   TextEditingController locationController =
       TextEditingController(text: homeController.userAddress.value);
-  TextEditingController destinationController = TextEditingController(text: AppStrings.templeDestination);
-  TextEditingController addStopController = TextEditingController(text: AppStrings.stopDestination);
+  TextEditingController destinationController =
+      TextEditingController(text: AppStrings.templeDestination);
+  TextEditingController addStopController =
+      TextEditingController(text: AppStrings.stopDestination);
   RxSet<Polyline> polylines = <Polyline>{}.obs;
   RxBool showPolyline = false.obs;
   final PolylinePoints polylinePoints = PolylinePoints();
@@ -150,19 +151,15 @@ class SelectRouteWithMapController extends GetxController {
       String address) async {
     final BitmapDescriptor markerIcon;
 
-    if (types.contains('library')) {
-      markerIcon = BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.bikeIcon));
-    } else if (types.contains('park')) {
-      markerIcon = BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.autoIcon));
-    } else if (types.contains('school')) {
-      markerIcon = BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.carIcon));
-    } else {
-      markerIcon = BitmapDescriptor.fromBytes(
-          await getBytesFromAsset(path: AppIcons.mapIcon));
-    }
+    // if (types.contains('library')) {
+    //   markerIcon = BitmapDescriptor.fromBytes(
+    //       await getBytesFromAsset(path: AppIcons.bikeIcon));
+    // } else {
+    //   markerIcon = BitmapDescriptor.fromBytes(
+    //       await getBytesFromAsset(path: AppIcons.mapIcon));
+    // }
+    markerIcon = BitmapDescriptor.fromBytes(
+    await getBytesFromAsset(path: AppIcons.mapIcon));
     addCustomMarker(cord, name, name, address, markerIcon);
     update();
   }
@@ -204,13 +201,13 @@ class SelectRouteWithMapController extends GetxController {
   void onMarkerTap(LatLng latLng) {}
   gMapsFunctionCall(context) {
     Timer(const Duration(seconds: 2), () async {
-      var libraryPlaceResult = await MapServices().nearByPlaceDetailsAPI(
-          const LatLng(21.2315, 72.8663), 16093.4.toInt(), "library");
+      // var libraryPlaceResult = await MapServices().nearByPlaceDetailsAPI(
+      //     const LatLng(-27.7241, 153.1137), 16093.4.toInt(), "library");
       var parkPlaceResult = await MapServices().nearByPlaceDetailsAPI(
-          const LatLng(21.2315, 72.8663), 16093.4.toInt(), "park");
+          const LatLng(-27.9628, 153.3814), 1009.4.toInt(), "park");
 
       List<dynamic> placeWithinList =
-          (libraryPlaceResult['results'] + parkPlaceResult['results']) as List;
+          ( parkPlaceResult['results']) as List;
       // allMarkerList.clear();
       // allMarkerList.addAll(placeWithinList);
 
@@ -231,7 +228,8 @@ class SelectRouteWithMapController extends GetxController {
     if (selectedDestination != null) {
       LatLng destinationLatLng = const LatLng(21.2212, 72.8688);
       polylines.clear();
-      markers.removeWhere((marker) => marker.markerId.value == AppStrings.destinationMarker);
+      markers.removeWhere(
+          (marker) => marker.markerId.value == AppStrings.destinationMarker);
       addCustomMarker(
         destinationLatLng,
         AppStrings.destinationMarker,
@@ -251,8 +249,8 @@ class SelectRouteWithMapController extends GetxController {
   }
 
   Future<void> calculateRouteAndDrawPolyline(
-      LatLng destination,
-      ) async {
+    LatLng destination,
+  ) async {
     try {
       PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         "AIzaSyAgrMwwCZlfp8Updk7wpl0oBihrvG4QfNc",
@@ -282,15 +280,12 @@ class SelectRouteWithMapController extends GetxController {
     }
   }
 
-
-
   void swapItems() {
     final temp = routeListTiles[routeListTiles.length - 2];
-    routeListTiles[routeListTiles.length - 2] = routeListTiles[routeListTiles.length - 1];
+    routeListTiles[routeListTiles.length - 2] =
+        routeListTiles[routeListTiles.length - 1];
     routeListTiles[routeListTiles.length - 1] = temp;
 
     isSwapped.value = !isSwapped.value;
   }
-
-
 }
