@@ -18,7 +18,7 @@ class AppStrings {
   static const String payment = "Payments";
   static const String safety = "Safety";
   static const String settings = "Settings";  
-  static const String key = 'AIzaSyBGQ5SqQhK4mRTIjJvogYeWHYdZqJvwuDk';
+  static const String key = '';
   static const String logOut = "Logout";
   static const String saveLocations = "Save locations";
   static const String lorem =
