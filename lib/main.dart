@@ -10,13 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await Firebase.initializeApp(
-      options: const FirebaseOptions(
-       apiKey: 'AIzaSyDwbdXWHM2L-E4XvF2bWYTnQtX_ljgCrrA',
-       appId: '1:93384810755:android:4a5f43f366393897ccc936',
-       messagingSenderId: '93384810755',
-       projectId: 'photoaid-169ce',
-       storageBucket: 'photoaid-169ce.appspot.com',
-      )
+      options: const FirebaseOptions( )
     );
   } catch (e) {
     print("Firebase initialization error: $e");
